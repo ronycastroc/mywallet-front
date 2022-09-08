@@ -5,9 +5,8 @@ import GlobalStyle from "../assets/style/GlobalStyles";
 import Login from "./Login";
 import Register from "./Register";
 import MyWallet from "./MyWallet";
-
-
-
+import NewEntry from "./NewEntry";
+import NewOut from "./NewOut";
 
 export default function App() {
     return (
@@ -17,6 +16,8 @@ export default function App() {
                   <Route path='/' element={<Login />}/>
                   <Route path='/register' element={<Register />}/>
                   <Route path='/mywallet' element={<MyWallet />}/>
+                  <Route path='newentry' element={<NewEntry />}/>
+                  <Route path='newout' element={<NewOut />}/>
             </Routes>
         </BrowserRouter>
     )

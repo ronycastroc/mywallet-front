@@ -17,15 +17,19 @@ export default function MyWallet() {
             </BoxValues>
 
             <Footer>
-                <EntryOut>
-                    <img src={Plus} alt="" />
-                    <p>Nova<br/> Entrada</p>
-                </EntryOut>
-                    
-                <EntryOut>
-                    <img src={Minus} alt="" />
-                    <p>Nova<br/> Saída</p>
-                </EntryOut>
+                <Link to={'/newentry'}>
+                    <EntryOut>                    
+                        <img src={Plus} alt="" />
+                        <p>Nova<br/> Entrada</p>             
+                    </EntryOut>
+                </Link>
+                
+                <Link to={'/newout'}>
+                    <EntryOut>                    
+                        <img src={Minus} alt="" />
+                        <p>Nova<br/> Saída</p>               
+                    </EntryOut>
+                </Link>  
             </Footer>
         </BoxWallet>            
     )
