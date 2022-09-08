@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
+import { postLogin, createHeaders } from "../service/mywalletService";
 
 
 export default function Login() {
@@ -13,12 +14,12 @@ export default function Login() {
     function sendForm(e) {
         e.preventDefault();
 
-        /* const body = {
+        const body = {
             email,
             password,
-        } */
+        } 
 
-        /* postLogin(body)
+        postLogin(body)
         .then(res => {
             resetForm();
             createHeaders();
@@ -28,14 +29,14 @@ export default function Login() {
         .catch(() => {
             alert('Seu email ou senha estão incorretos, digite novamente.');
             resetForm();
-        }) */
+        })
         
     }
 
-    /* function resetForm() {
+    function resetForm() {
         setEmail('');
         setPassword('');
-    } */
+    }
 
     return (
         <>
@@ -100,6 +101,7 @@ const ContentLogin = styled.div`
         font-weight: bold;
         background-color: #A328D6;
         color: #FFFFFF;
+        cursor: pointer;
     }
 
     p {

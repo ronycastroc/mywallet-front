@@ -13,6 +13,6 @@ const Title = styled.h1`
     font-size: 40px;
     color: #FFFFFF;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 100px;
     margin-bottom: 25px;
 `
