@@ -1,11 +1,25 @@
 import styled from "styled-components";
+import { deleteValue } from "../service/mywalletService";
 
-export default function ValuesUser({text, value, type, date}) {
+export default function ValuesUser({text, value, type, date, id}) {
+
+    function deleteIdValue() {
+        const confirm = window.confirm('Deseja exluir esse valor?');
+
+        if(confirm) {
+            deleteValue(id).catch(error => {
+                console.error('Não foi possivel apagar valor');
+                console.error(error);
+            }
+        )}
+    }
+
     return (
         <Infos type={type}>                    
             <span>{date}</span>
             <span>{text}</span>
             <span>{value.toFixed(2)}</span>
+            <span onClick={deleteIdValue}>X</span>
         </Infos>
     )
 }
@@ -29,7 +43,15 @@ const Infos = styled.div`
     span:nth-child(3) {
         color: ${props => props.type === 'entry' ? '#03AC00' : '#C70000'};
         font-size: 0.9rem;
-        right: 13px;
+        right: 25px;
         position: absolute;
+    }
+
+    span:nth-child(4) {
+        color: #C6C6C6;
+        font-size: 0.9rem;
+        right: 10px;
+        position: absolute;
+        cursor: pointer;
     }
 `

@@ -19,7 +19,7 @@ export default function MyWallet() {
         getValues()
         .then(res => setValues(res.data))
         .catch(() => alert('Algo deu errado!'));
-    }, []); 
+    }, [values]); 
 
     return (
         <BoxWallet>
@@ -39,7 +39,7 @@ export default function MyWallet() {
                 ) :
 
                 (values.map((value, index) => (              
-                    <ValuesUser key={index} text={value.text} value={value.value} type={value.type} date={value.date}/>                
+                    <ValuesUser key={index} text={value.text} value={value.value} type={value.type} date={value.date} id={value._id}/>                
                     
                 )))}
 

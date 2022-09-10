@@ -35,5 +35,12 @@ function getValues() {
     return promise;
 };
 
-export { createHeaders, postRegister, postLogin, postValue, getValues };
+function deleteValue(id) {
+    const config = createHeaders();
+    const promise = axios.delete(`${BASE_URL}/values/${id}`, config);
+
+    return promise;
+} 
+
+export { createHeaders, postRegister, postLogin, postValue, getValues, deleteValue };
 
