@@ -14,25 +14,26 @@ function createHeaders() {
 };
 
 function postRegister(body) {
-    const promise = axios.post(`${BASE_URL}/sign-up`, body);
+    const promise = axios.post(`${BASE_URL}/auth/sign-up`, body);
     return promise;
 };
 
 function postLogin(body) {
-    const promise = axios.post(`${BASE_URL}/login`, body);
+    const promise = axios.post(`${BASE_URL}/auth/sign-in`, body);
     return promise;
 };
 
 function postValue(body) {
-    const promise = axios.post(`${BASE_URL}/value`, body);
-    return promise;
-};
-
-function getValue() {
     const config = createHeaders();
-    const promise = axios.get(`${BASE_URL}/value`, config);
+    const promise = axios.post(`${BASE_URL}/values`, body, config);
     return promise;
 };
 
-export { createHeaders, postRegister, postLogin, postValue, getValue };
+function getValues() {
+    const config = createHeaders();
+    const promise = axios.get(`${BASE_URL}/values`, config);
+    return promise;
+};
+
+export { createHeaders, postRegister, postLogin, postValue, getValues };
 

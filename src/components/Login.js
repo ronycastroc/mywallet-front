@@ -11,6 +11,8 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+    localStorage.clear()
+
     function sendForm(e) {
         e.preventDefault();
 
@@ -21,9 +23,10 @@ export default function Login() {
 
         postLogin(body)
         .then(res => {
+            console.log(res.data.name)
             resetForm();
-            createHeaders();
-            localStorage.setItem('token', JSON.stringify());
+            localStorage.setItem('name', JSON.stringify(res.data.name))
+            localStorage.setItem('token', JSON.stringify(res.data.token));
             navigate('/mywallet');
         })
         .catch(() => {

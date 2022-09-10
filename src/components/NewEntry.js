@@ -14,7 +14,7 @@ export default function NewEntry() {
         e.preventDefault();
 
         const body = {
-            value,
+            value: Number(value),
             text,
             type: 'entry'
         }

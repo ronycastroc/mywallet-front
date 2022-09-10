@@ -1,19 +1,51 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getValues } from "../service/mywalletService";
 import Exit from '../assets/img/exit.png';
 import Plus from '../assets/img/plus-circle.png';
 import Minus from '../assets/img/minus-circle.png';
+import { useEffect, useState } from "react";
+import ValuesUser from "./ValuesUser";
+import CashBalance from "./CashBalance";
 
 export default function MyWallet() {
+    const [values, setValues] = useState([]);
+
+    const navigate = useNavigate();
+
+    const userName = JSON.parse(localStorage.getItem('name'))
+
+    useEffect(() => {
+        getValues()
+        .then(res => setValues(res.data))
+        .catch(() => alert('Algo deu errado!'));
+    }, []); 
+
     return (
         <BoxWallet>
             <Header>
-                <h1>Olá, Fulano</h1>
-                <img src={Exit} alt="exit" />
+                <h1>Olá, {userName}</h1>
+                <img src={Exit} alt="exit" onClick={() => {
+                    localStorage.clear()
+                    navigate('/')
+                }} />
             </Header>
 
-            <BoxValues>
-                <p>Não há registros de<br/> entrada ou saída</p>
+            <BoxValues>               
+                
+                {values.length === 0 ? (
+                    <p>Não há registros de<br/> entrada ou saída</p>
+
+                ) :
+
+                (values.map((value, index) => (              
+                    <ValuesUser key={index} text={value.text} value={value.value} type={value.type} date={value.date}/>                
+                    
+                )))}
+
+                {values.length === 0 ? ('') : (
+                <CashBalance values={values}/>)}             
+
             </BoxValues>
 
             <Footer>
@@ -31,10 +63,10 @@ export default function MyWallet() {
                     </EntryOut>
                 </Link>  
             </Footer>
+            
         </BoxWallet>            
     )
 }
-
 
 const BoxWallet = styled.div`
     width: 85%;
@@ -59,11 +91,13 @@ const Header = styled.div`
 `
 const BoxValues = styled.div`
     width: 100%;
-    height: 340px;
+    min-height: 330px;
     margin-top: 25px;
+    padding-bottom: 50px;
     border-radius: 5px;
     background-color: #FFFFFF;
     display: table;
+    position: relative;
 
     p {
         color: #868686;
@@ -78,6 +112,7 @@ const Footer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+    margin-bottom: 15px;
 `
 
 const EntryOut = styled.div`
