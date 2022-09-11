@@ -42,5 +42,12 @@ function deleteValue(id) {
     return promise;
 } 
 
-export { createHeaders, postRegister, postLogin, postValue, getValues, deleteValue };
+function updateValue(id, body) {
+    const config = createHeaders();
+    const promise = axios.put(`${BASE_URL}/values/${id}`,body, config);
+
+    return promise;
+}
+
+export { createHeaders, postRegister, postLogin, postValue, getValues, deleteValue, updateValue };
 

@@ -7,14 +7,20 @@ import Minus from '../assets/img/minus-circle.png';
 import { useEffect, useState } from "react";
 import ValuesUser from "./ValuesUser";
 import CashBalance from "./CashBalance";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export default function MyWallet() {
     const [values, setValues] = useState([]);
+    const { setCash, setTitle } = useContext(UserContext);
+
+    setCash('')
+    setTitle('')
 
     const navigate = useNavigate();
 
-    const userName = JSON.parse(localStorage.getItem('name'))
-
+    const userName = JSON.parse(localStorage.getItem('name'));
+    
     useEffect(() => {
         getValues()
         .then(res => setValues(res.data))
@@ -87,6 +93,7 @@ const Header = styled.div`
     img {
         width: 22px;
         height: 23px;
+        cursor: pointer;
     }
 `
 const BoxValues = styled.div`

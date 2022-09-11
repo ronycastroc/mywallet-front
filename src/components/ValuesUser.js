@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { deleteValue } from "../service/mywalletService";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export default function ValuesUser({text, value, type, date, id}) {
+    const { setCash, setTitle, setIdValue } = useContext(UserContext);
+    const navigate = useNavigate();
 
     function deleteIdValue() {
         const confirm = window.confirm('Deseja exluir esse valor?');
@@ -14,10 +19,27 @@ export default function ValuesUser({text, value, type, date, id}) {
         )}
     }
 
+    function updateValue() {
+        if(type === 'entry') {
+            setTitle(text);
+            setCash(value);
+            setIdValue(id)
+            navigate('/updateentry');
+
+        } else {
+            setTitle(text);
+            setCash(value);
+            setIdValue(id)
+            navigate('/updateout');
+        }
+
+        
+    }
+
     return (
         <Infos type={type}>                    
             <span>{date}</span>
-            <span>{text}</span>
+            <span onClick={updateValue}>{text}</span>
             <span>{value.toFixed(2)}</span>
             <span onClick={deleteIdValue}>X</span>
         </Infos>
@@ -37,7 +59,8 @@ const Infos = styled.div`
     span:nth-child(2) {
         color: #000000;
         font-size: 0.9rem;
-        margin-left: 5px;        
+        margin-left: 5px;
+        cursor: pointer;        
     }
 
     span:nth-child(3) {

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
-import { postLogin, createHeaders } from "../service/mywalletService";
+import { postLogin } from "../service/mywalletService";
 
 
 export default function Login() {
@@ -32,8 +32,7 @@ export default function Login() {
         .catch(() => {
             alert('Seu email ou senha estão incorretos, digite novamente.');
             resetForm();
-        })
-        
+        })        
     }
 
     function resetForm() {

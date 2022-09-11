@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { ContentLogin } from "./Login";
-import { postValue } from "../service/mywalletService";
+import { updateValue } from "../service/mywalletService";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 
-export default function NewEntry() {
-    const { cash, setCash, title, setTitle } = useContext(UserContext);
+export default function UpdateEntry() {
+    const { cash, setCash, title, setTitle, idValue, setIdValue } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -19,10 +19,10 @@ export default function NewEntry() {
             type: 'entry'
         }
 
-        postValue(body)
+        updateValue(idValue, body)
         .then(() => {
             resetForm();
-            navigate('/mywallet', );
+            navigate('/mywallet');
         })
         .catch(() => {
             resetForm();
@@ -33,12 +33,13 @@ export default function NewEntry() {
     function resetForm() {
         setCash('');
         setTitle('');
+        setIdValue('')
     }
 
     return (
         <>        
             <Header>
-                <h1>Nova Entrada</h1>
+                <h1>Editar Entrada</h1>
             </Header>           
 
             <form onSubmit={sendForm}>
@@ -58,7 +59,7 @@ export default function NewEntry() {
                     required
                     />
 
-                    <button>Salvar Entrada</button>
+                    <button>Atualizar Entrada</button>
                     
                 </ContentLogin>
 

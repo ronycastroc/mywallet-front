@@ -1,12 +1,12 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { ContentLogin } from "./Login";
 import { postValue } from "../service/mywalletService";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export default function NewOut() {
-    const [value, setValue] = useState('');
-    const [text, setText] = useState('');
+    const { cash, setCash, title, setTitle } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -14,8 +14,8 @@ export default function NewOut() {
         e.preventDefault();
 
         const body = {
-            value: Number(value),
-            text,
+            value: Number(cash),
+            text: title,
             type: 'out'
         }
 
@@ -31,8 +31,8 @@ export default function NewOut() {
     }
 
     function resetForm() {
-        setValue('');
-        setText('');
+        setCash('');
+        setTitle('');
     }
 
     return (
@@ -46,15 +46,15 @@ export default function NewOut() {
                     
                     <input type="number" name="number" 
                     placeholder="Valor"
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    value={cash}
+                    onChange={(e) => setCash(e.target.value)}
                     required
                     />
                         
                     <input type="text" name="text" 
                     placeholder="Descrição"
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     required
                     />
 
