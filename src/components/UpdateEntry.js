@@ -39,7 +39,7 @@ export default function UpdateEntry() {
     return (
         <>        
             <Header>
-                <h1>Editar Entrada</h1>
+                <h1>Editar entrada</h1>
             </Header>           
 
             <form onSubmit={sendForm}>

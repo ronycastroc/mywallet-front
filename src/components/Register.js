@@ -11,6 +11,8 @@ export default function Register() {
     const [confirmPass, setConfirmPass] = useState('');
 
     const navigate = useNavigate();
+
+    localStorage.clear();
     
     function sendForm(e) {
         e.preventDefault();

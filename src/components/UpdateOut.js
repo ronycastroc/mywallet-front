@@ -40,7 +40,7 @@ export default function UpdateOut() {
     return (
         <>        
             <Header>
-                <h1>Editar Saída</h1>
+                <h1>Editar saída</h1>
             </Header>           
 
             <form onSubmit={sendForm}>
